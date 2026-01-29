@@ -8,7 +8,6 @@ export default function LoginPage() {
   const [userId, setUserId] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
-  const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
   // Default credentials
@@ -19,21 +18,18 @@ export default function LoginPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setError('')
     setIsLoading(true)
 
-    // Simulate network delay for realism
+    // Simulate network delay
     await new Promise(resolve => setTimeout(resolve, 800))
 
     if (userId === VALID_ID && password === VALID_PASSWORD) {
-      // Store authentication state
       sessionStorage.setItem('isAuthenticated', 'true')
       sessionStorage.setItem('userId', userId)
       navigate(from, { replace: true })
-    } else {
-      setError('Invalid User ID or Password')
-      setIsLoading(false)
     }
+
+    setIsLoading(false)
   }
 
   return (
@@ -62,7 +58,7 @@ export default function LoginPage() {
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-5">
-            {/* User ID Field */}
+            {/* User ID */}
             <div>
               <label className="block text-sm font-medium text-white/70 mb-2">
                 User ID
@@ -73,14 +69,14 @@ export default function LoginPage() {
                   type="text"
                   value={userId}
                   onChange={(e) => setUserId(e.target.value)}
-                  className="w-full bg-black/30 text-white pl-10 pr-4 py-3 rounded-xl border border-white/10 focus:border-emerald-500/50 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 transition-all"
+                  className="w-full bg-black/30 text-white pl-10 pr-4 py-3 rounded-xl border border-white/10 focus:border-emerald-500/50 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
                   placeholder="Enter your User ID"
                   required
                 />
               </div>
             </div>
 
-            {/* Password Field */}
+            {/* Password */}
             <div>
               <label className="block text-sm font-medium text-white/70 mb-2">
                 Password
@@ -91,32 +87,25 @@ export default function LoginPage() {
                   type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full bg-black/30 text-white pl-10 pr-12 py-3 rounded-xl border border-white/10 focus:border-emerald-500/50 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 transition-all"
+                  className="w-full bg-black/30 text-white pl-10 pr-12 py-3 rounded-xl border border-white/10 focus:border-emerald-500/50 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
                   placeholder="Enter your Password"
                   required
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 hover:text-white transition-colors"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 hover:text-white"
                 >
                   {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
               </div>
             </div>
 
-            {/* Error Message */}
-            {error && (
-              <div className="p-3 bg-rose-500/10 border border-rose-500/20 rounded-xl">
-                <p className="text-rose-400 text-sm text-center">{error}</p>
-              </div>
-            )}
-
             {/* Submit Button */}
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full py-3 px-4 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-xl font-semibold hover:opacity-90 transition-all shadow-lg shadow-emerald-500/25 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="w-full py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-xl font-semibold shadow-lg shadow-emerald-500/25 disabled:opacity-50 flex items-center justify-center gap-2"
             >
               {isLoading ? (
                 <>
@@ -128,17 +117,19 @@ export default function LoginPage() {
               )}
             </button>
           </form>
-
+        </div>
 
         {/* Footer */}
         <div className="text-center mt-8 text-white/30 text-sm">
           Party Ledger & Fund Flow Tracking System
         </div>
         <div className="text-center mt-4 text-white/40 text-sm">
-          Developed by <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent font-medium">Shourya Pandey</span>
+          Developed by{' '}
+          <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent font-medium">
+            Shourya Pandey
+          </span>
         </div>
       </div>
     </div>
   )
-
-
+}
