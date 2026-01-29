@@ -13,7 +13,7 @@ export default function LoginPage() {
 
   // Default credentials
   const VALID_ID = 'admin'
-  const VALID_PASSWORD = 'admin'
+  const VALID_PASSWORD = 'admin123'
 
   const from = location.state?.from?.pathname || '/analyze'
 
