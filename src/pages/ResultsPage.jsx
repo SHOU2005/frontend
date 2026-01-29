@@ -4,7 +4,7 @@ import {
   TrendingUp, TrendingDown, Users, GitBranch, Download, 
   CheckCircle, FileText, FileJson, Wallet, CreditCard, Target, 
   Filter, Search, ChevronDown, RefreshCw, DollarSign, Calendar,
-  BarChart3, Home, PieChart, Hash, X, Copy
+  BarChart3, Home, PieChart, Hash, X, Copy, LogOut
 } from 'lucide-react'
 
 // Import components
@@ -227,6 +227,10 @@ export default function ResultsPage() {
               AcuTrace
             </button>
             <div className="flex items-center gap-4">
+              <button onClick={() => navigate('/logout')} className="flex items-center gap-2 text-white/60 hover:text-white transition-colors">
+                <LogOut className="w-4 h-4" />
+                Logout
+              </button>
               <button onClick={() => navigate('/analyze')} className="flex items-center gap-2 text-white/80 hover:text-white transition-colors">
                 <RefreshCw className="w-4 h-4" />
                 New Analysis
