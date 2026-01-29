@@ -434,7 +434,7 @@ export default function ResultsPage() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-white/10">
-                    {filteredTransactions.slice(0, 100).map((txn, idx) => (
+                    {filteredTransactions.map((txn, idx) => (
                       <tr 
                         key={idx} 
                         className="hover:bg-white/5 cursor-pointer transition-colors"
@@ -468,11 +468,6 @@ export default function ResultsPage() {
                   </tbody>
                 </table>
               </div>
-              {filteredTransactions.length > 100 && (
-                <p className="text-center mt-4 text-white/50">
-                  Showing first 100 of {filteredTransactions.length} transactions
-                </p>
-              )}
               {filteredTransactions.length === 0 && (
                 <p className="text-center mt-4 text-white/50 py-8">
                   No transactions match your filters
